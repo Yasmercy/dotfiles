@@ -1,0 +1,8 @@
+[user]
+	email = ianchensoftware@gmail.com
+	name = Ian Chen
+[init]
+	branch = main
+	defaultBranch = main
+[credential]
+	helper = cache
