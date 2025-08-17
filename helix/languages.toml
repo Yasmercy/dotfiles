@@ -1,0 +1,52 @@
+[language-server.ruff]
+command = "uv"
+args = ["run", "ruff", "server"]
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+config.reportMissingTypeStubs = false
+
+[language-server.texlab]
+command = "texlab"
+
+[language-server.scls]
+command = "simple-completion-language-server"
+
+[language-server.scls.config]
+max_completion_items = 100           # set max completion results len for each group: words, snippets, unicode-input
+feature_words = true                 # enable completion by word
+feature_snippets = true              # enable snippets
+snippets_first = true                # completions will return before snippets by default
+snippets_inline_by_word_tail = false # suggest snippets by WORD tail, for example text `xsq|` become `x^2|` when snippet `sq` has body `^2`
+feature_unicode_input = false        # enable "unicode input"
+feature_paths = false                # enable path completion
+feature_citations = false            # enable citation completion (only on `citation` feature enabled)
+
+[[language]]
+name = "python"
+auto-format = true
+language-servers = [
+  { name = "ruff", only-features = ["diagnostics", "format"] },
+  { name = "pyright", except-features = ["diagnostics", "format"] },
+]
+formatter = { command = "uv", args = ["run", "ruff", "format", "--stdin-filename", "{file}"] }
+
+# [[language]]
+# name = "mips"
+# auto-format = true
+# file-types = ["s"]
+# scope = "source.mips"
+
+# [[grammar]]
+# name = "mips"
+# source = { git = "https://github.com/omeyenburg/tree-sitter-mips", rev = "main" }
+
+[[language]]
+name = "latex"
+auto-format = true
+language-servers = [
+  { name = "texlab" },
+  { name = "scls" }
+]
+formatter = { command = "latexindent"  }

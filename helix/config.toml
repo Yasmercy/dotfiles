@@ -1,0 +1,39 @@
+theme = "catppuccin_frappe"
+
+[editor]
+line-number = "relative"
+mouse = false
+popup-border = "all"
+
+[editor.cursor-shape]
+insert = "block"
+normal = "block"
+select = "block"
+
+[editor.file-picker]
+hidden = true
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+diagnostics = ["warning", "error"]
+workspace-diagnostics = ["warning", "error"]
+
+[keys.normal.g]
+a = "code_action"
+
+[keys.normal."["]
+"n" = "@?\\d+<ret>"
+[keys.normal."]"]
+"n" = "@/\\d+<ret>"
+
+[keys.normal.space]
+"." = "file_picker_in_current_buffer_directory"
+"o" = "@:config-reload<ret>"
+"z" = "@:config-open<ret>"
+"r" = "@:reload<ret>"
